@@ -3,7 +3,7 @@ if exists("g:loaded_vim_cdroot")
 endif
 let g:loaded_vim_cdroot = 1
 
-function! s:check_non_git_roots(a:quiet)
+function! s:check_non_git_roots(quiet)
     if !exists("g:non_git_roots")
         return 0
     endif
@@ -11,14 +11,14 @@ function! s:check_non_git_roots(a:quiet)
         if expand("%:p") =~ non_git_root
             exec "lcd " . expand(non_git_root)
             if !a:quiet
-                echo expand(non_git_root)
+                echo "Root: " . expand(non_git_root)
             endif
             return 1
         endif
     endfor
 endfunction
 
-function! s:root(a:quiet)
+function! s:root(quiet)
     if s:check_non_git_roots(a:quiet)
         return
     endif
@@ -26,7 +26,7 @@ function! s:root(a:quiet)
     if !v:shell_error
         execute 'lcd' root
         if !a:quiet
-            echo root
+            echo "Root: " . root
         endif
     else
         if !a:quiet
