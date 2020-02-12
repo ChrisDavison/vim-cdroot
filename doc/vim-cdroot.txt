@@ -14,13 +14,16 @@ Examples                                          |vim-cdroot-examples|
 INTRODUCTION                                      *vim-cdroot-introduction*
 ------------
 
-When navigating within a project, it can be useful to set the current directory to 
-either the directory of the current file, or the project root. Vim provides
-*autochdir* to automatically change the directory to that of the current file.  However, this can make it a bit of a nuisance when you want to find a file in a 'sibling' directory.
+When navigating within a project, it can be useful to set the current directory 
+to either the directory of the current file, or the project root. Vim provides
+*autochdir* to automatically change the directory to that of the current file.  
+However, this can make it a bit of a nuisance when you want to find a file in a 
+'sibling' directory.
 
 This plugin provides the command :Root , which will set the current dir to
 the root of your version controlled project (currently only git supported) or
-one of a set of 'privileged' directories, if you are in a child directory of one of these version controlled or privileged roots.
+one of a set of 'privileged' directories, if you are in a child directory of 
+one of these version controlled or privileged roots.
 
 
 COMMANDS                                          *vim-cdroot-commands*
