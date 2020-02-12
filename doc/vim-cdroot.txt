@@ -1,0 +1,55 @@
+*vim-cdroot.txt* Use git root or a 'privileged dir' as the current dir.
+
+Author:  chris cavison <https://chrisdavison.github.io>
+License: Same terms as Vim itself (see |license|)
+
+Vim-CDRoot                                        *vim-cdroot* *cdroot*
+
+Introduction                                      |vim-cdroot-introduction|
+Commands                                          |vim-cdroot-commands|
+Options                                           |vim-cdroot-options|
+Examples                                          |vim-cdroot-examples|
+
+
+INTRODUCTION                                      *vim-cdroot-introduction*
+------------
+
+When navigating within a project, it can be useful to set the current directory to 
+either the directory of the current file, or the project root. Vim provides
+*autochdir* to automatically change the directory to that of the current file.  However, this can make it a bit of a nuisance when you want to find a file in a 'sibling' directory.
+
+This plugin provides the command :Root , which will set the current dir to
+the root of your version controlled project (currently only git supported) or
+one of a set of 'privileged' directories, if you are in a child directory of one of these version controlled or privileged roots.
+
+
+COMMANDS                                          *vim-cdroot-commands*
+--------
+
+:Root[!]                  Change to the root of the git repo, or a privilaged
+                          parent.
+                          With [!], the resulting current dir will be echoed.
+
+
+OPTIONS                                           *vim-cdroot-options*
+-------
+
+g:non_git_roots           List of roots to privilege if not in a git repo.
+                          These can use env vars or '~', as vim's 'expand'
+                          will be used to generate an actual path.
+
+
+EXAMPLES                                          *vim-cdroot-examples*
+--------
+
+I keep all my plaintext notes in side Dropbox. This folder has various
+subfolders. By adding the root '~/Dropbox/notes' to my g:non_git_roots,
+whenever I'm anywhere within that dir I can use :Root to set the parent to the
+root notes folder.
+
+From within '~/Dropbox/notes/software/vim':
+
+    let g:non_git_roots=['~/Dropbox/notes']
+    
+    :Root!
+    # Root: /home/davison/Dropbox/notes
