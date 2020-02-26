@@ -17,9 +17,11 @@ function! s:check_non_git_roots(quiet)
             return 1
         endif
     endfor
+    return 1
 endfunction
 
 function! s:root(quiet)
+    exec "cd " . expand("%:p:h")
     if s:check_non_git_roots(a:quiet)
         return
     endif
@@ -30,9 +32,7 @@ function! s:root(quiet)
             echo "Root: " . root
         endif
     else
-        if !a:quiet
-            echo "Not in git repo or under a recognised 'non_git_root'"
-        endif
+        echo "Not in git repo or under a recognised 'non_git_root'"
     end
 endfunction
 command! -bang Root call s:root(<bang>1)
