@@ -24,7 +24,9 @@ function! s:root(quiet)
     let cur=expand('%:p:h') 
     exec "cd " . expand("%:p:h")
     if s:check_non_git_roots(a:quiet)
-        echom "Was a non-git root"
+        if !a:quiet
+            echom "Was a non-git root"
+        endif
         return
     endif
     let root = split(system('git rev-parse --show-toplevel'), '\n')[0]
@@ -35,7 +37,9 @@ function! s:root(quiet)
         endif
     else
         exec "cd " . l:cur
-        echom "Not in git repo or under a recognised 'non_git_root'"
+        if !a:quiet
+            echom "Not in git repo or under a recognised 'non_git_root'"
+        endif
     end
 endfunction
 command! -bang Root call s:root(<bang>1)
