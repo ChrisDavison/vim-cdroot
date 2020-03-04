@@ -9,7 +9,7 @@ function! s:check_non_git_roots(quiet)
     endif
     let docpath=expand("%:p")
     for non_git_root in g:non_git_roots
-        if docpath =~ non_git_root
+        if docpath =~ expand(non_git_root)
             exec "lcd " . expand(non_git_root)
             if !a:quiet
                 echo "Root: " . expand(non_git_root)
