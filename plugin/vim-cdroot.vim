@@ -29,7 +29,11 @@ function! s:root(quiet)
         endif
         return
     endif
-    let root = split(system('git rev-parse --show-toplevel'), '\n')[0]
+    let sysout=split(system('git rev-parse --show-toplevel'), '\n')
+    if len(sysout) < 1
+        return
+    endif
+    let root = sysout[0]
     if !v:shell_error
         execute 'lcd' . root
         if !a:quiet
