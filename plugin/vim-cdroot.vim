@@ -21,6 +21,7 @@ function! s:check_non_git_roots(quiet)
 endfunction
 
 function! s:root(quiet)
+    set noautochdir
     let cur=expand('%:p:h') 
     exec "cd " . expand("%:p:h")
     if s:check_non_git_roots(a:quiet)
